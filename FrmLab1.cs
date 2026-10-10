@@ -17,16 +17,26 @@ namespace Sulit_Justin_LabStream
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FrmFileName frmName = new FrmFileName();
-            frmName.ShowDialog();
-
-            string getInput = txtInput.Text;
-            string docPath = Application.StartupPath;
-
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, FrmFileName.SetFileName)))
+            try
             {
-                outputFile.WriteLine(getInput);
-                Console.WriteLine(getInput);
+                if(string.IsNullOrWhiteSpace(txtInput.Text))
+                    throw new FormatException("Input cannot be empty.");
+
+                FrmFileName frmName = new FrmFileName();
+                frmName.ShowDialog();
+
+                string getInput = txtInput.Text;
+                string docPath = Application.StartupPath;
+
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, FrmFileName.SetFileName)))
+                {
+                    outputFile.WriteLine(getInput);
+                    Console.WriteLine(getInput);
+                }
+            }
+            catch(FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

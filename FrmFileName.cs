@@ -18,8 +18,17 @@ namespace Sulit_Justin_LabStream
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
-            SetFileName = txtFileName.Text + ".txt";
-            this.Close();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtFileName.Text))
+                    throw new FormatException("File Name must not be empty and can only contain letters and spaces.");
+                SetFileName = txtFileName.Text + ".txt";
+                this.Close();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

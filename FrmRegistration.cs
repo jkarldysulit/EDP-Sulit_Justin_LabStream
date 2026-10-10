@@ -23,19 +23,19 @@ namespace Sulit_Justin_LabStream
             {
                 //student number
                 if (!long.TryParse(txtStudentNo.Text, out long studentNumber))
-                    throw new FormatException("Invalid Input. Letters/Special characters are not allowed.");
+                    throw new FormatException("Invalid Input. Student Number: Letters/Special characters are not allowed.");
 
                 //last name
                 if (string.IsNullOrWhiteSpace(txtLastName.Text) || !txtLastName.Text.All(character => char.IsLetter(character) || character == ' '))
-                    throw new FormatException("Invalid input. Numbers/Special characters are not allowed.");
+                    throw new FormatException("Invalid input. Last Name: Numbers/Special characters are not allowed.");
 
                 //first name
                 if (string.IsNullOrWhiteSpace(txtFirstName.Text) || !txtFirstName.Text.All(character => char.IsLetter(character) || character == ' '))
-                    throw new FormatException("Invalid input. Numbers/Special characters are not allowed.");
+                    throw new FormatException("Invalid input. First Name: Numbers/Special characters are not allowed.");
 
                 //age
                 if (!int.TryParse(txtAge.Text, out int age))
-                    throw new FormatException("Invalid Input.  Letters/Special characters are not allowed.");
+                    throw new FormatException("Invalid Input. Age: Letters/Special characters are not allowed.");
 
                 //gender
                 if (cboGender.SelectedIndex == -1)
